@@ -37,8 +37,33 @@ public class TamilScriptConverterTest
     }
 
     @Test
-    public void testConvert() {
+    public void testConvertWordsStartingWith_அ() {
         assertEquals("ammaa", TamilScriptConverter.convertWord("அம்மா"));
         assertEquals("appaa", TamilScriptConverter.convertWord("அப்பா"));
+        assertEquals("aamaam", TamilScriptConverter.convertWord("ஆமாம்"));
+        assertEquals("appam", TamilScriptConverter.convertWord("அப்பம்"));
+        assertEquals("annan", TamilScriptConverter.convertWord("அண்ணன்"));
+        assertEquals("akkaa", TamilScriptConverter.convertWord("அக்கா"));
+    }
+
+    public void testConvertWordsStartingWith_ஆ() {
+        assertEquals("aappam", TamilScriptConverter.convertWord("ஆப்பம்"));
+    }
+
+    public void testConvertWordsStartingWith_இ() {
+        assertEquals("inbam", TamilScriptConverter.convertWord("இன்பம்"));
+    }
+
+    public void testConvertWordsStartingWith_ஈ() {
+        assertEquals("eenthaar", TamilScriptConverter.convertWord("ஈந்தார்"));
+        assertEquals("eesal", TamilScriptConverter.convertWord("ஈசல்"));
+    }
+
+    public void testConvertWordsStartingWith_ஐ() {
+        assertEquals("aiyam", TamilScriptConverter.convertWord("ஐயம்"));
+    }
+
+    public void testConvertWordsStartingWith_ப() {
+        assertEquals("payam", TamilScriptConverter.convertWord("பயம்"));
     }
 }

@@ -27,11 +27,49 @@ public class TamilScriptConverter
         charMap.put("ஒ", "o");
         charMap.put("ஓ", "oa");
         //mei
-        charMap.put("ம்", "m");
+        charMap.put("க்", "k");
+        charMap.put("ங்", "ng");
+        charMap.put("ச்", "ch");
+        charMap.put("ஜ", "j");
+        charMap.put("ஞ்", "nj");
+        charMap.put("ட்", "t");
+        charMap.put("ண்", "n");
+        charMap.put("த்", "th");
+        charMap.put("ந்", "nth");
+        charMap.put("ன்", "n");
         charMap.put("ப்", "p");
+        charMap.put("ம்", "m");
+        charMap.put("ய்", "y");
+        charMap.put("ர்", "r");
+        charMap.put("ற", "r");
+        charMap.put("ல", "l");
+        charMap.put("ள", "l");
+        charMap.put("ழ்", "zh");
+        charMap.put("வ்", "v");
+        charMap.put("ஷ்", "sh");
+        charMap.put("ஸ்", "s");
+
         //uyirmei
-        charMap.put("ம", "ma" );
+        charMap.put("க", "ka");
+        charMap.put("ங", "nga");
+        charMap.put("ச", "sa");
+        charMap.put("ஞ", "nya");
+        charMap.put("ட", "ta");
+        charMap.put("ண", "na");
+        charMap.put("த", "tha");
+        charMap.put("ந", "na");
+        charMap.put("ன", "na");
         charMap.put("ப", "pa");
+        charMap.put("ம", "ma" );
+        charMap.put("ய", "ya");
+        charMap.put("ர", "ra");
+        charMap.put("ற", "ra");
+        charMap.put("ல", "la");
+        charMap.put("ள", "la");
+        charMap.put("ழ", "zha");
+        charMap.put("வ", "va");
+        charMap.put("ஷ", "sha");
+        charMap.put("ஸ", "sa");
     }
 
     public static String convertChar(String tamilChar)
