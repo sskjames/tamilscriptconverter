@@ -2,6 +2,12 @@ package org.tamilscriptconverter;
 
 import org.junit.Test;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -55,7 +61,7 @@ public class TamilScriptConverterTest
     }
 
     @Test
-    public void testConvertCharWithVowelSignAfterChar()
+    public void testConvertCharWithVowelSign()
     {
         //vowel sign aa
         assertEquals("paa", TamilScriptConverter.convertCharWithVowelSign("பா", " "));
@@ -70,6 +76,10 @@ public class TamilScriptConverterTest
         assertEquals("mu", TamilScriptConverter.convertCharWithVowelSign("மு", " "));
         //vowel sign uu
         assertEquals("moo", TamilScriptConverter.convertCharWithVowelSign("மூ", "  "));
+        //vowel sign o
+        assertEquals("ko", TamilScriptConverter.convertCharWithVowelSign("கொ", "  "));
+        //vowel sign oo
+        assertEquals("yoa", TamilScriptConverter.convertCharWithVowelSign("யோ", "  "));
     }
 
     @Test
@@ -110,7 +120,7 @@ public class TamilScriptConverterTest
     public void testConvertWordsStartingWith_ஆ() {
         assertEquals("aappam", TamilScriptConverter.convert("ஆப்பம்"));
         assertEquals("aamaam", TamilScriptConverter.convert("ஆமாம்"));
-        assertEquals("aantavar pataiththa vetriyin naalithu", TamilScriptConverter.convert("ஆண்டவர் படைத்த வெற்றியின் நாளிது"));
+        assertEquals("aantavar pataiththa vetrriyin naalithu", TamilScriptConverter.convert("ஆண்டவர் படைத்த வெற்றியின் நாளிது"));
     }
 
     @Test
@@ -122,7 +132,7 @@ public class TamilScriptConverterTest
 
     @Test
     public void testConvertWordsStartingWith_ஈ() {
-        assertEquals("eenththaar", TamilScriptConverter.convert("ஈந்தார்"));
+        assertEquals("eenthaar", TamilScriptConverter.convert("ஈந்தார்"));
         assertEquals("eesal", TamilScriptConverter.convert("ஈசல்"));
         assertEquals("eetti", TamilScriptConverter.convert("ஈட்டி"));
     }
@@ -139,8 +149,8 @@ public class TamilScriptConverterTest
 
     @Test
     public void testConvertWordsStartingWith_ஒ() {
-        assertEquals("ontru", TamilScriptConverter.convert("ஒன்று"));
-        assertEquals("ottrumai", TamilScriptConverter.convert("ஒற்றுமை"));
+        assertEquals("onru", TamilScriptConverter.convert("ஒன்று"));
+        assertEquals("otrrumai", TamilScriptConverter.convert("ஒற்றுமை"));
     }
 
     @Test
@@ -154,7 +164,7 @@ public class TamilScriptConverterTest
         assertEquals("meetpu", TamilScriptConverter.convert("மீட்பு"));
         assertEquals("muthala", TamilScriptConverter.convert("முதல"));
         assertEquals("moochchu", TamilScriptConverter.convert("மூச்சு"));
-        assertEquals("moontru", TamilScriptConverter.convert("மூன்று"));
+        assertEquals("moonru", TamilScriptConverter.convert("மூன்று"));
     }
 
     @Test
@@ -162,5 +172,16 @@ public class TamilScriptConverterTest
         assertEquals("chinnavan", TamilScriptConverter.convert("சின்னவன்"));
         assertEquals("cheental", TamilScriptConverter.convert("சீண்டல்"));
         assertEquals("suntal", TamilScriptConverter.convert("சுண்டல்"));
+        assertEquals("saetrrilirunthu thookkinaar", TamilScriptConverter.convert("சேற்றிலிருந்து தூக்கினார்"));
+    }
+
+    @Test
+    public void testConvertFile() throws IOException
+    {
+        File source = new File("src/test/resources/Urugaayoa Nenjamae Nee.txt");
+        File target = new File("target/Urugaayoa Nenjamae Nee.txt");
+        TamilScriptConverter.convertFile(source, target);
+        assertTrue(target.exists());
+        System.out.println(new String(Files.readAllBytes(Paths.get(target.toURI()))));
     }
 }

@@ -1,8 +1,10 @@
 package org.tamilscriptconverter;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.*;
 import java.util.*;
 
 /**
@@ -51,13 +53,13 @@ public class TamilScriptConverter
         charMap.put("ட்", "t");
         charMap.put("ண்", "n");
         charMap.put("த்", "th");
-        charMap.put("ந்", "nth");
+        charMap.put("ந்", "n");
         charMap.put("ன்", "n");
         charMap.put("ப்", "p");
         charMap.put("ம்", "m");
         charMap.put("ய்", "y");
         charMap.put("ர்", "r");
-        charMap.put("ற்", "t");
+        charMap.put("ற்", "tr");
         charMap.put("ல்", "l");
         charMap.put("ள்", "l");
         charMap.put("ழ்", "zh");
@@ -88,6 +90,35 @@ public class TamilScriptConverter
         charMap.put("ஸ", "sa");
     }
 
+    public static void convertFile(File source, File target) throws IOException
+    {
+        if(source != null && source.exists()) {
+            logger.info("Preparing to convert Tamil script in the source {} to {}...", source.getName(), target);
+            BufferedReader reader = null;
+            BufferedWriter writer = null;
+            try {
+                reader = new BufferedReader(new FileReader(source));
+                writer = new BufferedWriter(new FileWriter(target));
+                String line = "";
+                while ((line = reader.readLine()) != null) {
+                    writer.write(line + "\r\n");
+                    writer.write(convert(line) + "\r\n");
+                }
+            } catch (IOException ex) {
+                logger.error("Error occurred while reading source file", ex);
+            } finally {
+                if(writer != null) {
+                    writer.close();
+                }
+                if(reader != null) {
+                    reader.close();
+                }
+            }
+        } else {
+            logger.error("File {} doesn't exist!", source);
+        }
+    }
+
     public static String convert(String text)
     {
         StringBuilder convertedWord = new StringBuilder();
@@ -95,8 +126,8 @@ public class TamilScriptConverter
         for (int i = 0; i < unicodeChars.size(); i++) {
             String unicodeChar = unicodeChars.get(i);
             logger.debug("Unicode char: {}", unicodeChar);
+            String previousChar = i > 0 ? unicodeChars.get(i - 1) : "  ";
             if(endsWithVowelSign(unicodeChar)) {
-                String previousChar = i > 0 ? unicodeChars.get(i - 1) : "  s";
                 convertedWord.append(convertCharWithVowelSign(unicodeChar, previousChar));
             } else {
                 convertedWord.append(convertChar(unicodeChar));
@@ -134,9 +165,30 @@ public class TamilScriptConverter
         return convertedString != null ? convertedString : charToBeConverted;
     }
 
+    public static String convertChar(String charToBeConverted, String previousChar)
+    {
+        logger.debug("Converting the tamil char \"{}\" whose previous char is \"{}\"", charToBeConverted, previousChar);
+        String convertedString =  "";
+        switch (previousChar) {
+            case "ஞ்":
+                if(charToBeConverted.equals("ச")){
+                    convertedString = "";
+                } else {
+                    charMap.get(charToBeConverted);
+                }
+                break;
+            default:
+                charMap.get(charToBeConverted);
+        }
+        logger.debug("Converted string: {}", convertedString);
+        return convertedString != null ? convertedString : charToBeConverted;
+    }
+
     static String convertCharWithVowelSign(String unicodeChar, String previousChar)
     {
         if(unicodeChar.length() > 1) {
+            logger.debug("Unicode char: {}, previous char: {}", unicodeChar, previousChar);
+            String convertedChar = "";
             char[] chars = unicodeChar.toCharArray();
             char [] previousChars = previousChar.toCharArray();
             char firstCharPart = chars[0];
@@ -156,7 +208,7 @@ public class TamilScriptConverter
                     if(previousChars[0] != 'ச' && firstCharPart == 'ச') {
                         return "su";
                     } else if(firstCharPart == 'ற') {
-                        return "tru";
+                        return "ru";
                     }
                     return convertChar(firstCharPart + "" + PULLI) + "u";
                 case VOWEL_SIGN_UU:
@@ -164,9 +216,17 @@ public class TamilScriptConverter
                 case VOWEL_SIGN_E:
                     return convertChar(firstCharPart + "" + PULLI) + "e";
                 case VOWEL_SIGN_EE:
+                    logger.debug("Character has vowel sign {}", VOWEL_SIGN_EE);
+                    if(StringUtils.isBlank(previousChar) && firstCharPart == 'ச') {
+                        return "sae";
+                    }
                     return convertChar(firstCharPart + "" + PULLI) + "ae";
                 case VOWEL_SIGN_AI:
                     return convertChar(firstCharPart + "" + PULLI) + "ai";
+                case VOWEL_SIGN_O:
+                    return convertChar(firstCharPart + "" + PULLI) + "o";
+                case VOWEL_SIGN_OO:
+                    return convertChar(firstCharPart + "" + PULLI) + "oa";
             }
         }
         return unicodeChar;
