@@ -1,5 +1,8 @@
 package org.tamilscriptconverter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.*;
 
 /**
@@ -8,7 +11,6 @@ import java.util.*;
  */
 public class TamilScriptConverter
 {
-    private static Map<String, String> charMap = new HashMap<String, String>();
     public static final char VOWEL_SIGN_AA = '\u0bbe';
     public static final char VOWEL_SIGN_I = '\u0bbf';
     public static final char VOWEL_SIGN_II = '\u0bc0';
@@ -17,10 +19,12 @@ public class TamilScriptConverter
     public static final char VOWEL_SIGN_EE = '\u0bc7';
     public static final char VOWEL_SIGN_E = '\u0bc6';
     public static final char VOWEL_SIGN_AI = '\u0bc8';
-    public static final char VOWEL_SIGN_PULLI = '\u0bcd';
+    public static final char PULLI = '\u0bcd';
     public static final List<Character> VOWEL_SIGNS_AFTER_CHAR = Arrays.asList(VOWEL_SIGN_AA, VOWEL_SIGN_I, VOWEL_SIGN_II,
             VOWEL_SIGN_U, VOWEL_SIGN_UU);
     public static final List<Character> VOWEL_SIGNS_BEFORE_CHAR = Arrays.asList(VOWEL_SIGN_E, VOWEL_SIGN_EE, VOWEL_SIGN_AI);
+    private static Logger logger = LoggerFactory.getLogger(TamilScriptConverter.class);
+    private static Map<String, String> charMap = new HashMap<String, String>();
 
     static {
         //uyir
@@ -39,7 +43,7 @@ public class TamilScriptConverter
         charMap.put("க்", "k");
         charMap.put("ங்", "ng");
         charMap.put("ச்", "ch");
-        charMap.put("ஜ", "j");
+        charMap.put("ஜ்", "j");
         charMap.put("ஞ்", "nj");
         charMap.put("ட்", "t");
         charMap.put("ண்", "n");
@@ -83,8 +87,30 @@ public class TamilScriptConverter
 
     public static String convertChar(String tamilChar)
     {
+        logger.debug("Converting the tamil char: {}", tamilChar);
+        char[] chars = tamilChar.toCharArray();
+        if(chars.length > 1) {
+            logger.debug("First char part: {}, second char part: {}", chars[0], chars[1]);
+        }
         String convertedString = charMap.get(tamilChar);
         return convertedString != null ? convertedString : "";
+    }
+
+    static String convertCharWithVowelSignAfterChar(String unicodeChar)
+    {
+        if(unicodeChar.length() > 1) {
+            char[] chars = unicodeChar.toCharArray();
+            char firstCharPart = chars[0];
+            char secondCharPart = chars[1];
+            logger.debug("First char part: {}, second char part: {}", firstCharPart, secondCharPart);
+            switch (secondCharPart) {
+                case VOWEL_SIGN_AA:
+                    return convertChar(firstCharPart + "") + "a";
+                case VOWEL_SIGN_I:
+                    return convertChar(firstCharPart + "" + PULLI) + "i";
+            }
+        }
+        return unicodeChar;
     }
 
     public static String convertWord(String word)
@@ -93,9 +119,9 @@ public class TamilScriptConverter
         List<String> unicodeChars = splitUnicodeChars(word);
         for (int i = 0; i < unicodeChars.size(); i++) {
             String unicodeChar = unicodeChars.get(i);
-            System.out.println("Unicode char: " + unicodeChar);
+            logger.debug("Unicode char: {}", unicodeChar);
             if(endsWithVowelSignAfterChar(unicodeChar)) {
-                convertedWord.append(appendVowelSignAfterChar(unicodeChar.toCharArray()[0]));
+                convertedWord.append(convertCharWithVowelSignAfterChar(unicodeChar));
             } else {
                 convertedWord.append(convertChar(unicodeChar));
             }
@@ -105,7 +131,7 @@ public class TamilScriptConverter
 
     public static List<String> splitUnicodeChars(String input)
     {
-        System.out.println("Input string: " + input);
+        logger.debug("Input string: {}", input);
         List<String> unicodeChars = new ArrayList<String>();
         char[] chars = input.toCharArray();
         for (int i = 0; i < chars.length; i++) {
@@ -128,7 +154,7 @@ public class TamilScriptConverter
 
     static boolean isSignAfterChar(char tamilChar)
     {
-        return VOWEL_SIGN_PULLI == tamilChar || VOWEL_SIGNS_AFTER_CHAR.contains(tamilChar);
+        return PULLI == tamilChar || VOWEL_SIGNS_AFTER_CHAR.contains(tamilChar);
     }
 
     static boolean isVowelSign(char tamilChar)
@@ -136,13 +162,7 @@ public class TamilScriptConverter
         return VOWEL_SIGNS_AFTER_CHAR.contains(tamilChar) || VOWEL_SIGNS_BEFORE_CHAR.contains(tamilChar);
     }
 
-    static String appendVowelSignAfterChar(char source)
-    {
-
-        return convertChar(source + "") + "a";
-    }
-
-    public static boolean endsWithVowelSignAfterChar(String unicodeChar)
+    static boolean endsWithVowelSignAfterChar(String unicodeChar)
     {
         if(unicodeChar.length() > 1) {
             return isVowelSignAfterChar(unicodeChar.toCharArray()[unicodeChar.length() - 1]);

@@ -56,6 +56,7 @@ public class TamilScriptConverterTest
 
     @Test
     public void testConvertChar() {
+        //uyir
         assertEquals("a", TamilScriptConverter.convertChar("அ"));
         assertEquals("aa", TamilScriptConverter.convertChar("ஆ"));
         assertEquals("i", TamilScriptConverter.convertChar("இ"));
@@ -67,6 +68,22 @@ public class TamilScriptConverterTest
         assertEquals("ai", TamilScriptConverter.convertChar("ஐ"));
         assertEquals("o", TamilScriptConverter.convertChar("ஒ"));
         assertEquals("oa", TamilScriptConverter.convertChar("ஓ"));
+        //mei
+        assertEquals("ch", TamilScriptConverter.convertChar("ச்"));
+    }
+
+    @Test
+    public void testConvertCharWithVowelSignAfterChar()
+    {
+        //vowel sign aa
+        assertEquals("paa", TamilScriptConverter.convertCharWithVowelSignAfterChar("பா"));
+        assertEquals("maa", TamilScriptConverter.convertCharWithVowelSignAfterChar("மா"));
+        //vowel sign i
+        assertEquals("chi", TamilScriptConverter.convertCharWithVowelSignAfterChar("சி"));
+        assertEquals("ki", TamilScriptConverter.convertCharWithVowelSignAfterChar("கி"));
+        assertEquals("thi", TamilScriptConverter.convertCharWithVowelSignAfterChar("தி"));
+        //vowel sign ii
+        //assertEquals("mee", TamilScriptConverter.convertCharWithVowelSignAfterChar("மீ"));
     }
 
     @Test
@@ -101,6 +118,7 @@ public class TamilScriptConverterTest
     public void testConvertWordsStartingWith_ஈ() {
         assertEquals("eenththaar", TamilScriptConverter.convertWord("ஈந்தார்"));
         assertEquals("eesal", TamilScriptConverter.convertWord("ஈசல்"));
+        assertEquals("eetti", TamilScriptConverter.convertWord("ஈட்டி"));
     }
 
     @Test
@@ -113,6 +131,10 @@ public class TamilScriptConverterTest
         assertEquals("payam", TamilScriptConverter.convertWord("பயம்"));
     }
 
+    @Test
+    public void testConvertWordsStartingWith_ச() {
+        assertEquals("chinnavan", TamilScriptConverter.convertWord("சின்னவன்"));
+    }
 
     @Test
     public void testConvertWords()
