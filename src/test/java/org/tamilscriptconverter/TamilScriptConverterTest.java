@@ -84,6 +84,8 @@ public class TamilScriptConverterTest
         assertEquals("thi", TamilScriptConverter.convertCharWithVowelSignAfterChar("தி"));
         //vowel sign ii
         assertEquals("mee", TamilScriptConverter.convertCharWithVowelSignAfterChar("மீ"));
+        //vowel sign u
+        assertEquals("mu", TamilScriptConverter.convertCharWithVowelSignAfterChar("மு"));
     }
 
     @Test
@@ -92,6 +94,7 @@ public class TamilScriptConverterTest
         String input = "அம்மா";
         List<String> expected = Arrays.asList("அ", "ம்", "மா");
         assertEquals(expected, TamilScriptConverter.splitUnicodeChars(input));
+        assertEquals(Arrays.asList("மு", "த", "ல"), TamilScriptConverter.splitUnicodeChars("முதல"));
     }
 
     @Test
@@ -134,6 +137,8 @@ public class TamilScriptConverterTest
     @Test
     public void testConvertWordsStartingWith_ம() {
         assertEquals("meettaar", TamilScriptConverter.convertWord("மீட்டார்"));
+        assertEquals("meetpu", TamilScriptConverter.convertWord("மீட்பு"));
+        assertEquals("muthala", TamilScriptConverter.convertWord("முதல"));
     }
 
     @Test

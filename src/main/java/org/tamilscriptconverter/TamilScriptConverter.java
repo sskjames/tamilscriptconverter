@@ -110,6 +110,8 @@ public class TamilScriptConverter
                     return convertChar(firstCharPart + "" + PULLI) + "i";
                 case VOWEL_SIGN_II:
                     return convertChar(firstCharPart + "" + PULLI) + "ee";
+                case VOWEL_SIGN_U:
+                    return convertChar(firstCharPart + "" + PULLI) + "u";
             }
         }
         return unicodeChar;
@@ -139,13 +141,17 @@ public class TamilScriptConverter
         for (int i = 0; i < chars.length; i++) {
             int nextCharIndex = i + 1;
             if(nextCharIndex < chars.length) {
+                logger.debug("Preparing to add the char: {}", chars[i]);
                 if(isSignAfterChar(chars[nextCharIndex])) {
                     unicodeChars.add(chars[i] + "" + chars[nextCharIndex]);
                 } else if(!isSignAfterChar(chars[i])) {
                     unicodeChars.add(chars[i] + "");
                 }
+            } else if (!isSignAfterChar(chars[i])){
+                unicodeChars.add(chars[i] + "");
             }
         }
+        logger.debug("Unicode chars: {}", unicodeChars);
         return unicodeChars;
     }
 
