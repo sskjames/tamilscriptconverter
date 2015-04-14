@@ -108,6 +108,8 @@ public class TamilScriptConverter
                     return convertChar(firstCharPart + "") + "a";
                 case VOWEL_SIGN_I:
                     return convertChar(firstCharPart + "" + PULLI) + "i";
+                case VOWEL_SIGN_II:
+                    return convertChar(firstCharPart + "" + PULLI) + "ee";
             }
         }
         return unicodeChar;
