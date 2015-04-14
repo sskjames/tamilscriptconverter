@@ -86,6 +86,8 @@ public class TamilScriptConverterTest
         assertEquals("mee", TamilScriptConverter.convertCharWithVowelSignAfterChar("மீ"));
         //vowel sign u
         assertEquals("mu", TamilScriptConverter.convertCharWithVowelSignAfterChar("மு"));
+        //vowel sign uu
+        assertEquals("moo", TamilScriptConverter.convertCharWithVowelSignAfterChar("மூ"));
     }
 
     @Test
@@ -125,6 +127,11 @@ public class TamilScriptConverterTest
     }
 
     @Test
+    public void testConvertWordsStartingWith_உ() {
+        //assertEquals("ulagu", TamilScriptConverter.convertWord("உலகு"));
+    }
+
+    @Test
     public void testConvertWordsStartingWith_ஐ() {
         assertEquals("aiyam", TamilScriptConverter.convertWord("ஐயம்"));
     }
@@ -139,6 +146,8 @@ public class TamilScriptConverterTest
         assertEquals("meettaar", TamilScriptConverter.convertWord("மீட்டார்"));
         assertEquals("meetpu", TamilScriptConverter.convertWord("மீட்பு"));
         assertEquals("muthala", TamilScriptConverter.convertWord("முதல"));
+        assertEquals("moochchu", TamilScriptConverter.convertWord("மூச்சு"));
+        //assertEquals("moondru", TamilScriptConverter.convertWord("மூன்று"));
     }
 
     @Test
