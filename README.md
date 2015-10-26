@@ -10,4 +10,4 @@ Converts Tamil Script to Romanised
 ### Steps:
 * Clone this project
 * Navigate to the cloned repository and build using: mvn clean package
-* Run the Jar file with the location of your Tamil Script file as an argument
+* Run the Jar file (with dependencies) with the location of your Tamil Script file as an argument
