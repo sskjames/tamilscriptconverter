@@ -184,4 +184,12 @@ public class TamilScriptConverterTest
         assertTrue(target.exists());
         System.out.println(new String(Files.readAllBytes(Paths.get(target.toURI()))));
     }
+
+    @Test
+    public void testGetTargetFile()
+    {
+        File source = new File("target/Urugaayoa Nenjamae Nee.txt");
+        File expected = new File(source.getParent() + File.separator + "converted", source.getName());
+        assertEquals(expected, TamilScriptConverter.getTargetFile(source));
+    }
 }
