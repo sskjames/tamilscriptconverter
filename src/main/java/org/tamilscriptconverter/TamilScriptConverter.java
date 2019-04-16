@@ -91,7 +91,11 @@ public class TamilScriptConverter
         charMap.put("ஸ", "sa");
 
         specialSoundChars.add(new SpecialSoundChar("சி", "ட்", "chi"));
-        specialSoundChars.add(new SpecialSoundChar("சு", "ஞ்", "ju"));
+
+        specialSoundChars.add(new SpecialSoundChar("ச", "ஞ்", "a"));
+        specialSoundChars.add(new SpecialSoundChar("சி", "ஞ்", "i"));
+        specialSoundChars.add(new SpecialSoundChar("சு", "ஞ்", "u"));
+
         specialSoundChars.add(new SpecialSoundChar("பு", "ன்", "bu"));
         specialSoundChars.add(new SpecialSoundChar("பு", "ண்", "bu"));
     }

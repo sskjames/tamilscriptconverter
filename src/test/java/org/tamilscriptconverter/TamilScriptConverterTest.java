@@ -2,18 +2,14 @@ package org.tamilscriptconverter;
 
 import org.junit.Test;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.*;
 
 /**
  * @author James Selvakumar
@@ -192,6 +188,9 @@ public class TamilScriptConverterTest
         assertEquals("anbu", TamilScriptConverter.convert("அன்பு"));
         assertEquals("kaatchi", TamilScriptConverter.convert("காட்சி"));
         assertEquals("maanbu", TamilScriptConverter.convert("மாண்பு"));
+        assertEquals("nenjam", TamilScriptConverter.convert("நெஞ்சம்"));
+        assertEquals("inji", TamilScriptConverter.convert("இஞ்சி"));
+        assertEquals("panju", TamilScriptConverter.convert("பஞ்சு"));
     }
 
     @Test
@@ -215,7 +214,7 @@ public class TamilScriptConverterTest
     private String getExpected()
     {
         return "1. உருகாயோ நெஞ்சமே\r\n" +
-                "1. urukaayoa nenjsamae\r\n" +
+                "1. urukaayoa nenjamae\r\n" +
                 "குருசினில் அந்தோ பார்!\r\n" +
                 "kuruchinil anthoa paar!\r\n" +
                 "கரங் கால்கள் ஆணி யேறித்\r\n" +
@@ -235,7 +234,7 @@ public class TamilScriptConverterTest
                 "\r\n" +
                 "\r\n" +
                 "3. தாக மிஞ்சி நாவறண்டு\r\n" +
-                "3. thaaka minjchi naavarantu\r\n" +
+                "3. thaaka minji naavarantu\r\n" +
                 "தங்க மேனி மங்குதே ,\r\n" +
                 "thangka maeni mangkuthae ,\r\n" +
                 "ஏகபரன் கண்ணயர்ந்து \r\n" +
