@@ -17,6 +17,7 @@ public class SpecialSoundChar implements Serializable
 
     public SpecialSoundChar()
     {
+        //default constructor
     }
 
     public SpecialSoundChar(String keyChar, String previousChar, String valueChar)
