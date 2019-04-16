@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2019. mCruncher Sdn Bhd, Cyberjaya, Malaysia.
- * All rights reserved.
- */
-
 package org.tamilscriptconverter;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -13,7 +8,6 @@ import java.io.Serializable;
 
 /**
  * @author Arunachalam
- * @since 6.7.0
  */
 public class SpecialSoundChar implements Serializable
 {

@@ -43,7 +43,8 @@ public class TamilScriptConverterTest
     }
 
     @Test
-    public void testConvertChar() {
+    public void testConvertChar()
+    {
         //uyir
         assertEquals("a", TamilScriptConverter.convertChar("அ"));
         assertEquals("aa", TamilScriptConverter.convertChar("ஆ"));
@@ -106,7 +107,8 @@ public class TamilScriptConverterTest
     }
 
     @Test
-    public void testConvertWordsStartingWith_அ() {
+    public void testConvertWordsStartingWith_அ()
+    {
 
         assertEquals("appaa", TamilScriptConverter.convert("அப்பா"));
         assertEquals("appam", TamilScriptConverter.convert("அப்பம்"));
@@ -117,49 +119,57 @@ public class TamilScriptConverterTest
     }
 
     @Test
-    public void testConvertWordsStartingWith_ஆ() {
+    public void testConvertWordsStartingWith_ஆ()
+    {
         assertEquals("aappam", TamilScriptConverter.convert("ஆப்பம்"));
         assertEquals("aamaam", TamilScriptConverter.convert("ஆமாம்"));
         assertEquals("aantavar pataiththa vetrriyin naalithu", TamilScriptConverter.convert("ஆண்டவர் படைத்த வெற்றியின் நாளிது"));
     }
 
     @Test
-    public void testConvertWordsStartingWith_இ() {
+    public void testConvertWordsStartingWith_இ()
+    {
         assertEquals("inpam", TamilScriptConverter.convert("இன்பம்"));
         assertEquals("yaesu kiristhuvae aantavar", TamilScriptConverter.convert("இயேசு கிறிஸ்துவே ஆண்டவர்"));
         assertEquals("raththam jeyam", TamilScriptConverter.convert("இரத்தம் ஜெயம்"));
     }
 
     @Test
-    public void testConvertWordsStartingWith_ஈ() {
+    public void testConvertWordsStartingWith_ஈ()
+    {
         assertEquals("eenthaar", TamilScriptConverter.convert("ஈந்தார்"));
         assertEquals("eesal", TamilScriptConverter.convert("ஈசல்"));
         assertEquals("eetti", TamilScriptConverter.convert("ஈட்டி"));
     }
 
     @Test
-    public void testConvertWordsStartingWith_உ() {
+    public void testConvertWordsStartingWith_உ()
+    {
         //assertEquals("ulagu", TamilScriptConverter.convert("உலகு"));
     }
 
     @Test
-    public void testConvertWordsStartingWith_ஐ() {
+    public void testConvertWordsStartingWith_ஐ()
+    {
         assertEquals("aiyam", TamilScriptConverter.convert("ஐயம்"));
     }
 
     @Test
-    public void testConvertWordsStartingWith_ஒ() {
+    public void testConvertWordsStartingWith_ஒ()
+    {
         assertEquals("onru", TamilScriptConverter.convert("ஒன்று"));
         assertEquals("otrrumai", TamilScriptConverter.convert("ஒற்றுமை"));
     }
 
     @Test
-    public void testConvertWordsStartingWith_ப() {
+    public void testConvertWordsStartingWith_ப()
+    {
         assertEquals("payam", TamilScriptConverter.convert("பயம்"));
     }
 
     @Test
-    public void testConvertWordsStartingWith_ம() {
+    public void testConvertWordsStartingWith_ம()
+    {
         assertEquals("meettaar", TamilScriptConverter.convert("மீட்டார்"));
         assertEquals("meetpu", TamilScriptConverter.convert("மீட்பு"));
         assertEquals("muthala", TamilScriptConverter.convert("முதல"));
@@ -168,7 +178,8 @@ public class TamilScriptConverterTest
     }
 
     @Test
-    public void testConvertWordsStartingWith_ச() {
+    public void testConvertWordsStartingWith_ச()
+    {
         assertEquals("chinnavan", TamilScriptConverter.convert("சின்னவன்"));
         assertEquals("cheental", TamilScriptConverter.convert("சீண்டல்"));
         assertEquals("suntal", TamilScriptConverter.convert("சுண்டல்"));
@@ -179,14 +190,14 @@ public class TamilScriptConverterTest
     public void testConvertSpecialSoundChar()
     {
         assertEquals("anbu", TamilScriptConverter.convert("அன்பு"));
-        assertEquals("maanbu", TamilScriptConverter.convert("மாண்பு"));
+        assertEquals("kaatchi", TamilScriptConverter.convert("காட்சி"));
         assertEquals("maanbu", TamilScriptConverter.convert("மாண்பு"));
     }
 
     @Test
     public void testConvertFile() throws IOException
     {
-        File source = new File("src/test/resources/Urugaayoa Nenjamae Nee.txt");
+        File source = new File("src/test/resources/Urugaayoa nenjamae nee.txt");
         File target = new File("target/Urugaayoa Nenjamae Nee.txt");
         TamilScriptConverter.convertFile(source, target);
         assertTrue(target.exists());
