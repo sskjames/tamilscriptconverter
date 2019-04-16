@@ -201,7 +201,7 @@ public class TamilScriptConverterTest
         File target = new File("target/Urugaayoa Nenjamae Nee.txt");
         TamilScriptConverter.convertFile(source, target);
         assertTrue(target.exists());
-        System.out.println(new String(Files.readAllBytes(Paths.get(target.toURI()))));
+        assertEquals(getExpected(), new String(Files.readAllBytes(Paths.get(target.toURI()))));
     }
 
     @Test
@@ -210,5 +210,57 @@ public class TamilScriptConverterTest
         File source = new File("target/Urugaayoa Nenjamae Nee.txt");
         File expected = new File(source.getParent() + File.separator + "converted", source.getName());
         assertEquals(expected, TamilScriptConverter.getTargetFile(source));
+    }
+
+    private String getExpected()
+    {
+        return "1. உருகாயோ நெஞ்சமே\r\n" +
+                "1. urukaayoa nenjsamae\r\n" +
+                "குருசினில் அந்தோ பார்!\r\n" +
+                "kuruchinil anthoa paar!\r\n" +
+                "கரங் கால்கள் ஆணி யேறித்\r\n" +
+                "karang kaalkal aani yaerith\r\n" +
+                "திருமேனி நையுதே!\r\n" +
+                "thirumaeni naiyuthae!\r\n" +
+                "\r\n" +
+                "\r\n" +
+                "2. மன்னுயிர்க்காய்த் தன்னுயிரை\r\n" +
+                "2. mannuyirkkaayth thannuyirai\r\n" +
+                "மாய்க்க வந்த மன்னவர்தாம் ,\r\n" +
+                "maaykka vantha mannavarthaam ,\r\n" +
+                "இந்நிலமெல் லாம் புரக்க\r\n" +
+                "innilamel laam purakka\r\n" +
+                "ஈன குரு சேறினார்.\r\n" +
+                "eena kuru saerinaar.\r\n" +
+                "\r\n" +
+                "\r\n" +
+                "3. தாக மிஞ்சி நாவறண்டு\r\n" +
+                "3. thaaka minjchi naavarantu\r\n" +
+                "தங்க மேனி மங்குதே ,\r\n" +
+                "thangka maeni mangkuthae ,\r\n" +
+                "ஏகபரன் கண்ணயர்ந்து \r\n" +
+                "aekaparan kannayarnthu \r\n" +
+                "எத்தனையாய் ஏங்குறார்.\r\n" +
+                "eththanaiyaay aengkuraar.\r\n" +
+                "\r\n" +
+                "\r\n" +
+                "4. மூவுலகைத் தாங்கும் தேவன்\r\n" +
+                "4. moovulakaith thaangkum thaevan\r\n" +
+                "மூன்றாணி தாங்கிடவோ?\r\n" +
+                "moonraani thaangkitavoa?\r\n" +
+                "சாவு வேளை வந்த போது\r\n" +
+                "saavu vaelai vantha poathu\r\n" +
+                "சிலுவையில் தொங்கினார்.\r\n" +
+                "chiluvaiyil thongkinaar.\r\n" +
+                "\r\n" +
+                "\r\n" +
+                "5. வல்ல பேயை வெல்ல வானம்\r\n" +
+                "5. valla paeyai vella vaanam\r\n" +
+                "விட்டு வந்த தெய்வம் பாராய்\r\n" +
+                "vittu vantha theyvam paaraay\r\n" +
+                "புல்லர் இதோ நன்றி கெட்டுப் \r\n" +
+                "pullar ithoa nanri kettup \r\n" +
+                "புறம் பாக்கி னார் அன்றோ?\r\n" +
+                "puram paakki naar antroa?\r\n";
     }
 }
