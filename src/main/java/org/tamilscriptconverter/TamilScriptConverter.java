@@ -48,7 +48,7 @@ public class TamilScriptConverter
         //mei
         charMap.put("க்", "k");
         charMap.put("ங்", "ng");
-        charMap.put("ச்", "ch");
+        charMap.put("ச்", "s");
         charMap.put("ஜ்", "j");
         charMap.put("ஞ்", "nj");
         charMap.put("ட்", "t");
@@ -98,6 +98,10 @@ public class TamilScriptConverter
         specialSoundChars.add(new SpecialSoundChar("சி", "ட்", null, "chi"));
         specialSoundChars.add(new SpecialSoundChar("சு", "ஞ்", null, "u"));
 
+        specialSoundChars.add(new SpecialSoundChar("ச்", null, "சு", "ch"));
+        specialSoundChars.add(new SpecialSoundChar("சு", "ச்", null, "chu"));
+
+        specialSoundChars.add(new SpecialSoundChar("ட", "ண்", null, "da"));
         specialSoundChars.add(new SpecialSoundChar("பு", "ண்", null, "bu"));
         specialSoundChars.add(new SpecialSoundChar("பு", "ன்", null, "bu"));
 
