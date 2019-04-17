@@ -90,18 +90,18 @@ public class TamilScriptConverter
         charMap.put("ஷ", "sha");
         charMap.put("ஸ", "sa");
 
-
+        specialSoundChars.add(new SpecialSoundChar("க", "ஏ", null, "ga"));
         specialSoundChars.add(new SpecialSoundChar("கு", "ங்", null, "u"));
 
         specialSoundChars.add(new SpecialSoundChar("ச", "ஞ்", null, "a"));
         specialSoundChars.add(new SpecialSoundChar("சி", "ஞ்", null, "i"));
+        specialSoundChars.add(new SpecialSoundChar("சி", "ட்", null, "chi"));
         specialSoundChars.add(new SpecialSoundChar("சு", "ஞ்", null, "u"));
 
-        specialSoundChars.add(new SpecialSoundChar("சி", "ட்", null, "chi"));
         specialSoundChars.add(new SpecialSoundChar("பு", "ண்", null, "bu"));
         specialSoundChars.add(new SpecialSoundChar("பு", "ன்", null, "bu"));
+
         specialSoundChars.add(new SpecialSoundChar("றோ", "ன்", null, "droa"));
-        specialSoundChars.add(new SpecialSoundChar("க", "ஏ", null, "ga"));
     }
 
     public static void convertFiles(File source) throws IOException
@@ -169,9 +169,9 @@ public class TamilScriptConverter
             logger.debug("Unicode char: {}", unicodeChar);
             final String previousChar = i > 0 ? unicodeChars.get(i - 1) : "  ";
             final String nextChar = i < unicodeChars.size() - 1 ? unicodeChars.get(i + 1) : " ";
-            String convertedChar = convertChar(unicodeChar, previousChar, nextChar);
-            if (StringUtils.isNotBlank(convertedChar)) {
-                convertedWord.append(convertedChar);
+            String convertedSpecialSoundCharValue = convertSpecialSoundChar(unicodeChar, previousChar, nextChar);
+            if (convertedSpecialSoundCharValue != null) {
+                convertedWord.append(convertedSpecialSoundCharValue);
             } else if (endsWithVowelSign(unicodeChar)) {
                 convertedWord.append(convertCharWithVowelSign(unicodeChar, previousChar));
             } else {
@@ -210,10 +210,8 @@ public class TamilScriptConverter
         return convertedString != null ? convertedString : charToBeConverted;
     }
 
-    private static String convertChar(String charToBeConverted, String previousChar, String nextChar)
+    static String convertSpecialSoundChar(String charToBeConverted, String previousChar, String nextChar)
     {
-        logger.debug("Converting the tamil char \"{}\" whose previous char is \"{}\" and next char is \"{}\"",
-                charToBeConverted, previousChar, nextChar);
         SpecialSoundChar matchedSpecialSoundChar = specialSoundChars.stream()
                 .filter(specialSoundChar -> matchesSpecialSoundChar(specialSoundChar, charToBeConverted, previousChar, nextChar))
                 .findFirst().orElse(null);
@@ -223,6 +221,7 @@ public class TamilScriptConverter
                             || matchesOnlyNextChar(specialSoundChar, charToBeConverted, nextChar))
                     .findFirst().orElse(null);
         }
+        logger.debug("Matched special sound char: {}", matchedSpecialSoundChar);
         return matchedSpecialSoundChar != null ? matchedSpecialSoundChar.getValueChar() : null;
     }
 

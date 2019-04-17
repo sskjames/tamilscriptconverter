@@ -183,7 +183,7 @@ public class TamilScriptConverterTest
     }
 
     @Test
-    public void testConvertSpecialSoundChar()
+    public void testConvertSpecialSoundWord()
     {
         assertEquals("anbu", TamilScriptConverter.convert("அன்பு"));
         assertEquals("kaatchi", TamilScriptConverter.convert("காட்சி"));
@@ -194,6 +194,25 @@ public class TamilScriptConverterTest
         assertEquals("manguthae", TamilScriptConverter.convert("மங்குதே"));
         assertEquals("androa", TamilScriptConverter.convert("அன்றோ"));
         assertEquals("aegaparan", TamilScriptConverter.convert("ஏகபரன்"));
+    }
+
+    @Test
+    public void testConvertSpecialSoundChar()
+    {
+        assertEquals("ga", TamilScriptConverter.convertSpecialSoundChar("க", "ஏ", null));
+        assertEquals("ga", TamilScriptConverter.convertSpecialSoundChar("க", "ஏ", "ப"));
+        assertNull(null, TamilScriptConverter.convertSpecialSoundChar("க", "ல்", null));
+        assertEquals("u", TamilScriptConverter.convertSpecialSoundChar("கு", "ங்", null));
+
+        assertEquals("a", TamilScriptConverter.convertSpecialSoundChar("ச", "ஞ்", null));
+        assertEquals("i", TamilScriptConverter.convertSpecialSoundChar("சி", "ஞ்", null));
+        assertEquals("chi", TamilScriptConverter.convertSpecialSoundChar("சி", "ட்", null));
+        assertEquals("u", TamilScriptConverter.convertSpecialSoundChar("சு", "ஞ்", null));
+
+        assertEquals("bu", TamilScriptConverter.convertSpecialSoundChar("பு", "ண்", null));
+        assertEquals("bu", TamilScriptConverter.convertSpecialSoundChar("பு", "ன்", null));
+
+        assertEquals("droa", TamilScriptConverter.convertSpecialSoundChar("றோ", "ன்", null));
     }
 
     @Test
