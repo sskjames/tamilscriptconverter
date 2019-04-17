@@ -13,6 +13,7 @@ public class SpecialSoundChar implements Serializable
 {
     private String keyChar;
     private String previousChar;
+    private String nextChar;
     private String valueChar;
 
     public SpecialSoundChar()
@@ -20,12 +21,14 @@ public class SpecialSoundChar implements Serializable
         //default constructor
     }
 
-    public SpecialSoundChar(String keyChar, String previousChar, String valueChar)
+    public SpecialSoundChar(String keyChar, String previousChar, String nextChar, String valueChar)
     {
         this.keyChar = keyChar;
         this.previousChar = previousChar;
+        this.nextChar = nextChar;
         this.valueChar = valueChar;
     }
+
 
     public String getKeyChar()
     {
@@ -45,6 +48,16 @@ public class SpecialSoundChar implements Serializable
     public void setPreviousChar(String previousChar)
     {
         this.previousChar = previousChar;
+    }
+
+    public String getNextChar()
+    {
+        return nextChar;
+    }
+
+    public void setNextChar(String nextChar)
+    {
+        this.nextChar = nextChar;
     }
 
     public String getValueChar()

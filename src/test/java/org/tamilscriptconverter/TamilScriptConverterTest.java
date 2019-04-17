@@ -191,6 +191,9 @@ public class TamilScriptConverterTest
         assertEquals("nenjam", TamilScriptConverter.convert("நெஞ்சம்"));
         assertEquals("inji", TamilScriptConverter.convert("இஞ்சி"));
         assertEquals("panju", TamilScriptConverter.convert("பஞ்சு"));
+        assertEquals("manguthae", TamilScriptConverter.convert("மங்குதே"));
+        assertEquals("androa", TamilScriptConverter.convert("அன்றோ"));
+        assertEquals("aegaparan", TamilScriptConverter.convert("ஏகபரன்"));
     }
 
     @Test
@@ -236,15 +239,15 @@ public class TamilScriptConverterTest
                 "3. தாக மிஞ்சி நாவறண்டு\r\n" +
                 "3. thaaka minji naavarantu\r\n" +
                 "தங்க மேனி மங்குதே ,\r\n" +
-                "thangka maeni mangkuthae ,\r\n" +
+                "thangka maeni manguthae ,\r\n" +
                 "ஏகபரன் கண்ணயர்ந்து \r\n" +
-                "aekaparan kannayarnthu \r\n" +
+                "aegaparan kannayarnthu \r\n" +
                 "எத்தனையாய் ஏங்குறார்.\r\n" +
-                "eththanaiyaay aengkuraar.\r\n" +
+                "eththanaiyaay aenguraar.\r\n" +
                 "\r\n" +
                 "\r\n" +
                 "4. மூவுலகைத் தாங்கும் தேவன்\r\n" +
-                "4. moovulakaith thaangkum thaevan\r\n" +
+                "4. moovulakaith thaangum thaevan\r\n" +
                 "மூன்றாணி தாங்கிடவோ?\r\n" +
                 "moonraani thaangkitavoa?\r\n" +
                 "சாவு வேளை வந்த போது\r\n" +
@@ -260,6 +263,6 @@ public class TamilScriptConverterTest
                 "புல்லர் இதோ நன்றி கெட்டுப் \r\n" +
                 "pullar ithoa nanri kettup \r\n" +
                 "புறம் பாக்கி னார் அன்றோ?\r\n" +
-                "puram paakki naar antroa?\r\n";
+                "puram paakki naar androa?\r\n";
     }
 }
