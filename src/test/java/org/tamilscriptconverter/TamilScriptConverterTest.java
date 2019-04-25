@@ -119,7 +119,7 @@ public class TamilScriptConverterTest
     {
         assertEquals("aappam", TamilScriptConverter.convert("ஆப்பம்"));
         assertEquals("aamaam", TamilScriptConverter.convert("ஆமாம்"));
-        assertEquals("aandavar pataiththa vetrriyin naalithu", TamilScriptConverter.convert("ஆண்டவர் படைத்த வெற்றியின் நாளிது"));
+        assertEquals("aandavar pataiththa vettriyin naalithu", TamilScriptConverter.convert("ஆண்டவர் படைத்த வெற்றியின் நாளிது"));
     }
 
     @Test
@@ -154,7 +154,7 @@ public class TamilScriptConverterTest
     public void testConvertWordsStartingWith_ஒ()
     {
         assertEquals("onru", TamilScriptConverter.convert("ஒன்று"));
-        assertEquals("otrrumai", TamilScriptConverter.convert("ஒற்றுமை"));
+        assertEquals("ottrumai", TamilScriptConverter.convert("ஒற்றுமை"));
     }
 
     @Test
@@ -179,7 +179,7 @@ public class TamilScriptConverterTest
         assertEquals("sinnavan", TamilScriptConverter.convert("சின்னவன்"));
         assertEquals("seendal", TamilScriptConverter.convert("சீண்டல்"));
         assertEquals("sundal", TamilScriptConverter.convert("சுண்டல்"));
-        assertEquals("saetrrilirunthu thookkinaar", TamilScriptConverter.convert("சேற்றிலிருந்து தூக்கினார்"));
+        assertEquals("saettrilirunthu thookkinaar", TamilScriptConverter.convert("சேற்றிலிருந்து தூக்கினார்"));
     }
 
     @Test
@@ -194,6 +194,12 @@ public class TamilScriptConverterTest
         assertEquals("manguthae", TamilScriptConverter.convert("மங்குதே"));
         assertEquals("androa", TamilScriptConverter.convert("அன்றோ"));
         assertEquals("aegaparan", TamilScriptConverter.convert("ஏகபரன்"));
+
+        assertEquals("kurai", TamilScriptConverter.convert("குறை"));
+        assertEquals("kuttram", TamilScriptConverter.convert("குற்றம்"));
+        assertEquals("vettri", TamilScriptConverter.convert("வெற்றி"));
+
+        assertEquals("agamagizhnthu", TamilScriptConverter.convert("அகமகிழ்ந்து"));
     }
 
     @Test
