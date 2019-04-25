@@ -101,6 +101,9 @@ public class TamilScriptConverter
         specialSoundChars.add(new SpecialSoundChar("சி", "ட்", null, "chi"));
         specialSoundChars.add(new SpecialSoundChar("சு", "ஞ்", null, "u"));
 
+        specialSoundChars.add(new SpecialSoundChar("டி", "பா", null, "di"));
+        specialSoundChars.add(new SpecialSoundChar("டு", "டி", null, "du"));
+
         specialSoundChars.add(new SpecialSoundChar("ச்", null, "சு", "ch"));
         specialSoundChars.add(new SpecialSoundChar("சு", "ச்", null, "chu"));
 

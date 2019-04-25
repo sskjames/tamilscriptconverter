@@ -198,8 +198,10 @@ public class TamilScriptConverterTest
         assertEquals("kurai", TamilScriptConverter.convert("குறை"));
         assertEquals("kuttram", TamilScriptConverter.convert("குற்றம்"));
         assertEquals("vettri", TamilScriptConverter.convert("வெற்றி"));
+        assertEquals("tharkaaththu", TamilScriptConverter.convert("தற்காத்து"));
 
         assertEquals("agamagizhnthu", TamilScriptConverter.convert("அகமகிழ்ந்து"));
+        assertEquals("paadiduvoam", TamilScriptConverter.convert("பாடிடுவோம்"));
     }
 
     @Test
