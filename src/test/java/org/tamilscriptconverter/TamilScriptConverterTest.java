@@ -202,6 +202,9 @@ public class TamilScriptConverterTest
 
         assertEquals("agamagizhnthu", TamilScriptConverter.convert("அகமகிழ்ந்து"));
         assertEquals("paadiduvoam", TamilScriptConverter.convert("பாடிடுவோம்"));
+
+        assertEquals("gnaanam", TamilScriptConverter.convert("ஞானம்"));
+        assertEquals("gnaayiru", TamilScriptConverter.convert("ஞாயிறு"));
     }
 
     @Test
