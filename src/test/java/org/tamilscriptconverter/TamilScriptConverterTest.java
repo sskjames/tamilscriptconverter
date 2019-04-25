@@ -186,8 +186,12 @@ public class TamilScriptConverterTest
     public void testConvertSpecialSoundWord()
     {
         assertEquals("anbu", TamilScriptConverter.convert("அன்பு"));
-        assertEquals("kaatchi", TamilScriptConverter.convert("காட்சி"));
         assertEquals("maanbu", TamilScriptConverter.convert("மாண்பு"));
+        assertEquals("pugazh", TamilScriptConverter.convert("புகழ்"));
+        assertEquals("magan", TamilScriptConverter.convert("மகன்"));
+        assertEquals("thaganabali", TamilScriptConverter.convert("தகனபலி"));
+
+        assertEquals("kaatchi", TamilScriptConverter.convert("காட்சி"));
         assertEquals("nenjam", TamilScriptConverter.convert("நெஞ்சம்"));
         assertEquals("inji", TamilScriptConverter.convert("இஞ்சி"));
         assertEquals("panju", TamilScriptConverter.convert("பஞ்சு"));
