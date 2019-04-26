@@ -256,7 +256,6 @@ public class TamilScriptConverterTest
     {
         assertEquals("ga", TamilScriptConverter.convertSpecialSoundChar("க", "ஏ", null));
         assertEquals("ga", TamilScriptConverter.convertSpecialSoundChar("க", "ஏ", "ப"));
-        assertNull(null, TamilScriptConverter.convertSpecialSoundChar("க", "ல்", null));
         assertEquals("gu", TamilScriptConverter.convertSpecialSoundChar("கு", "ங்", null));
 
         assertEquals("a", TamilScriptConverter.convertSpecialSoundChar("ச", "ஞ்", null));
