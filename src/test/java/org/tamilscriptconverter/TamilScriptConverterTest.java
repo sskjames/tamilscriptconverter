@@ -219,6 +219,8 @@ public class TamilScriptConverterTest
     public void testConvertSpecialSoundWord()
     {
         assertEquals("kaatchi", TamilScriptConverter.convert("காட்சி"));
+        assertEquals("iratchagar", TamilScriptConverter.convert("இரட்சகர்"));
+
         assertEquals("nenjam", TamilScriptConverter.convert("நெஞ்சம்"));
         assertEquals("inji", TamilScriptConverter.convert("இஞ்சி"));
         assertEquals("panju", TamilScriptConverter.convert("பஞ்சு"));
@@ -237,6 +239,24 @@ public class TamilScriptConverterTest
         assertEquals("manudaril", TamilScriptConverter.convert("மனுடரில்"));
         assertEquals("varudam", TamilScriptConverter.convert("வருடம்"));
         assertEquals("naavarandu", TamilScriptConverter.convert("நாவறண்டு"));
+
+        assertEquals("kadum", TamilScriptConverter.convert("கடும்"));
+        assertEquals("kaadu", TamilScriptConverter.convert("காடு"));
+        assertEquals("kodum", TamilScriptConverter.convert("கொடும்"));
+        assertEquals("padu", TamilScriptConverter.convert("படு"));
+        assertEquals("paadu", TamilScriptConverter.convert("பாடு"));
+        assertEquals("madu", TamilScriptConverter.convert("மடு"));
+        assertEquals("maadu", TamilScriptConverter.convert("மாடு"));
+        assertEquals("saduthi", TamilScriptConverter.convert("சடுதி"));
+        assertEquals("saadu", TamilScriptConverter.convert("சாடு"));
+        assertEquals("nadu", TamilScriptConverter.convert("நடு"));
+        assertEquals("naadu", TamilScriptConverter.convert("நாடு"));
+        assertEquals("vidu", TamilScriptConverter.convert("விடு"));
+        assertEquals("veedu", TamilScriptConverter.convert("வீடு"));
+        assertEquals("uduththi", TamilScriptConverter.convert("உடுத்தி"));
+        assertEquals("ooda", TamilScriptConverter.convert("ஊட"));
+        assertEquals("odukki", TamilScriptConverter.convert("ஒடுக்கி"));
+        assertEquals("oadu", TamilScriptConverter.convert("ஓடு"));
 
         assertEquals("anbu", TamilScriptConverter.convert("அன்பு"));
         assertEquals("maanbu", TamilScriptConverter.convert("மாண்பு"));
