@@ -96,32 +96,57 @@ public class TamilScriptConverter
         specialSoundChars.add(new SpecialSoundChar("க", "பு", null, "ga"));
         specialSoundChars.add(new SpecialSoundChar("க", "ம", null, "ga"));
         specialSoundChars.add(new SpecialSoundChar("க", "த", null, "ga"));
+        specialSoundChars.add(new SpecialSoundChar("க", "தா", null, "ga"));
+        specialSoundChars.add(new SpecialSoundChar("க", "ங்", null, "ga"));
+        specialSoundChars.add(new SpecialSoundChar("க", "ல்", null, "ga"));
+        specialSoundChars.add(new SpecialSoundChar("க", "ல", null, "ga"));
+        specialSoundChars.add(new SpecialSoundChar("க", "ழ்", null, "ga"));
+
+        specialSoundChars.add(new SpecialSoundChar("கா", "ரு", null, "gaa"));
+
         specialSoundChars.add(new SpecialSoundChar("கி", "ம", null, "gi"));
-        specialSoundChars.add(new SpecialSoundChar("கு", "ங்", null, "u"));
+        specialSoundChars.add(new SpecialSoundChar("கி", "ங்", null, "gi"));
+
+        specialSoundChars.add(new SpecialSoundChar("கு", "ங்", null, "gu"));
+        specialSoundChars.add(new SpecialSoundChar("கு", "வெ", null, "gu"));
+        specialSoundChars.add(new SpecialSoundChar("கு", "ல", null, "gu"));
+
+        specialSoundChars.add(new SpecialSoundChar("கோ", "ங்", null, "goa"));
+        specialSoundChars.add(new SpecialSoundChar("கை", "ல", null, "gai"));
 
         specialSoundChars.add(new SpecialSoundChar("ச", "ஞ்", null, "a"));
         specialSoundChars.add(new SpecialSoundChar("சி", "ஞ்", null, "i"));
         specialSoundChars.add(new SpecialSoundChar("சி", "ட்", null, "chi"));
         specialSoundChars.add(new SpecialSoundChar("சு", "ஞ்", null, "u"));
 
+        specialSoundChars.add(new SpecialSoundChar("ட", "னு", null, "da"));
+        specialSoundChars.add(new SpecialSoundChar("ட", "ரு", null, "da"));
         specialSoundChars.add(new SpecialSoundChar("டி", "பா", null, "di"));
         specialSoundChars.add(new SpecialSoundChar("டு", "டி", null, "du"));
+        specialSoundChars.add(new SpecialSoundChar("டு", "ண்", null, "du"));
 
         specialSoundChars.add(new SpecialSoundChar("ச்", null, "சு", "ch"));
         specialSoundChars.add(new SpecialSoundChar("சு", "ச்", null, "chu"));
 
         specialSoundChars.add(new SpecialSoundChar("ட", "ண்", null, "da"));
+        specialSoundChars.add(new SpecialSoundChar("ட", "கி", null, "da"));
 
         specialSoundChars.add(new SpecialSoundChar("ப", "ன", null, "ba"));
+        specialSoundChars.add(new SpecialSoundChar("ப", "ன்", null, "ba"));
         specialSoundChars.add(new SpecialSoundChar("பு", "ண்", null, "bu"));
         specialSoundChars.add(new SpecialSoundChar("பு", "ன்", null, "bu"));
+        specialSoundChars.add(new SpecialSoundChar("பை", "ரு", null, "bai"));
+        specialSoundChars.add(new SpecialSoundChar("பை", "ச", null, "bai"));
 
         specialSoundChars.add(new SpecialSoundChar("ற்", null, "ற", "t"));
         specialSoundChars.add(new SpecialSoundChar("ற்", null, "றி", "t"));
         specialSoundChars.add(new SpecialSoundChar("ற்", null, "று", "t"));
         specialSoundChars.add(new SpecialSoundChar("ற", "ற்", null, "tra"));
+        specialSoundChars.add(new SpecialSoundChar("றா", "ன்", null, "draa"));
         specialSoundChars.add(new SpecialSoundChar("றி", "ற்", null, "tri"));
+        specialSoundChars.add(new SpecialSoundChar("றி", "ன்", null, "dri"));
         specialSoundChars.add(new SpecialSoundChar("று", "ற்", null, "tru"));
+        specialSoundChars.add(new SpecialSoundChar("று", "ன்", null, "dru"));
         specialSoundChars.add(new SpecialSoundChar("றோ", "ன்", null, "droa"));
     }
 
@@ -225,7 +250,7 @@ public class TamilScriptConverter
             }
         }
         logger.trace("Unicode chars: {}", unicodeChars);
-        return trimUnicodeChars(unicodeChars);
+        return unicodeChars;
     }
 
     static String convertChar(String charToBeConverted)
