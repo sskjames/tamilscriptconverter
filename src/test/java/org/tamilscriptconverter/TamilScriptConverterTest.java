@@ -233,6 +233,20 @@ public class TamilScriptConverterTest
         assertEquals(expected, TamilScriptConverter.getTargetFile(source));
     }
 
+    @Test
+    public void testMatches()
+    {
+        String text = "அப்பா";
+        assertTrue(TamilScriptConverter.matches(text, "அ"));
+        assertTrue(TamilScriptConverter.matches(text, "ப்"));
+        assertTrue(TamilScriptConverter.matches(text, "ப"));
+        assertTrue(TamilScriptConverter.matches(text, "பா"));
+        assertTrue(TamilScriptConverter.matches(text, "ப்பா"));
+
+        assertFalse(TamilScriptConverter.matches(text, "ஆ"));
+        assertFalse(TamilScriptConverter.matches(text, "ம்"));
+    }
+
     private String getExpected()
     {
         return "1. உருகாயோ நெஞ்சமே\r\n" +

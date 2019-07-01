@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author James Selvakumar
@@ -236,7 +238,7 @@ public class TamilScriptConverter
         String nextCharToBeMatched = specialSoundChar.getNextChar();
         if (specialSoundChar.getKeyChar().equals(charToBeConverted)
                 && previousCharToBeMatched != null && nextCharToBeMatched != null) {
-            return previousCharToBeMatched.equals(previousChar) && nextCharToBeMatched.equals(nextChar);
+            return matches(previousChar, previousCharToBeMatched) && matches(nextChar, nextCharToBeMatched);
         }
         return false;
     }
@@ -245,7 +247,7 @@ public class TamilScriptConverter
                                                    String charToBeConverted, String previousChar)
     {
         if (specialSoundChar.getKeyChar().equals(charToBeConverted) && specialSoundChar.getPreviousChar() != null) {
-            return specialSoundChar.getPreviousChar().equals(previousChar);
+            return matches(previousChar, specialSoundChar.getPreviousChar());
         }
         return false;
     }
@@ -254,7 +256,7 @@ public class TamilScriptConverter
                                                String charToBeConverted, String nextChar)
     {
         if (specialSoundChar.getKeyChar().equals(charToBeConverted) && specialSoundChar.getNextChar() != null) {
-            return specialSoundChar.getNextChar().equals(nextChar);
+            return matches(nextChar, specialSoundChar.getNextChar());
         }
         return false;
     }
@@ -346,5 +348,16 @@ public class TamilScriptConverter
     public static File getTargetFile(File source)
     {
         return new File(source.getParent() + File.separator + "converted", source.getName());
+    }
+
+    public static boolean matches(String text, String regex)
+    {
+        return getMatcher(text, regex).find();
+    }
+
+    private static Matcher getMatcher(String text, String regex)
+    {
+        Pattern pattern = Pattern.compile(regex, Pattern.UNICODE_CHARACTER_CLASS);
+        return pattern.matcher(text);
     }
 }
