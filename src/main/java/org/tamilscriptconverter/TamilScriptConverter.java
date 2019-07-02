@@ -71,7 +71,7 @@ public class TamilScriptConverter
         charMap.put("ஸ்", "s");
 
         //uyirmei
-        charMap.put("க", "ka");
+        charMap.put("க", "ga");
         charMap.put("ங", "nga");
         charMap.put("ச", "sa");
         charMap.put("ஞ", "nya");
@@ -92,22 +92,26 @@ public class TamilScriptConverter
         charMap.put("ஷ", "sha");
         charMap.put("ஸ", "sa");
 
-        specialSoundChars.add(new SpecialSoundChar("க", "ஏ", null, "ga"));
-        specialSoundChars.add(new SpecialSoundChar("கு", "ங்", null, "u"));
+        specialSoundChars.add(new SpecialSoundChar("க", null, ".", "ka"));
+        specialSoundChars.add(new SpecialSoundChar("கா", null, ".", "kaa"));
 
-        specialSoundChars.add(new SpecialSoundChar("ச", "ஞ்", null, "a"));
-        specialSoundChars.add(new SpecialSoundChar("சி", "ஞ்", null, "i"));
-        specialSoundChars.add(new SpecialSoundChar("சி", "ட்", null, "chi"));
-        specialSoundChars.add(new SpecialSoundChar("சு", "ஞ்", null, "u"));
+        specialSoundChars.add(new SpecialSoundChar("க", "க்", ".", "ka"));
+        specialSoundChars.add(new SpecialSoundChar("கா", "க்", ".", "kaa"));
 
-        specialSoundChars.add(new SpecialSoundChar("ச்", null, "சு", "ch"));
-        specialSoundChars.add(new SpecialSoundChar("சு", "ச்", null, "chu"));
+        specialSoundChars.add(new SpecialSoundChar("கு", "ங்", ".", "u"));
 
-        specialSoundChars.add(new SpecialSoundChar("ட", "ண்", null, "da"));
-        specialSoundChars.add(new SpecialSoundChar("பு", "ண்", null, "bu"));
-        specialSoundChars.add(new SpecialSoundChar("பு", "ன்", null, "bu"));
+        specialSoundChars.add(new SpecialSoundChar("ச", "ஞ்", ".", "a"));
+        specialSoundChars.add(new SpecialSoundChar("சி", "ஞ்", ".", "i"));
+        specialSoundChars.add(new SpecialSoundChar("சி", "ட்", ".", "chi"));
+        specialSoundChars.add(new SpecialSoundChar("சு", "ஞ்", ".", "u"));
 
-        specialSoundChars.add(new SpecialSoundChar("றோ", "ன்", null, "droa"));
+        specialSoundChars.add(new SpecialSoundChar("ச்", ".", "சு", "ch"));
+        specialSoundChars.add(new SpecialSoundChar("சு", "ச்", ".", "chu"));
+
+        specialSoundChars.add(new SpecialSoundChar("ட", "ண்", ".", "da"));
+        specialSoundChars.add(new SpecialSoundChar("பு", "ண்|ன்", ".", "bu"));
+
+        specialSoundChars.add(new SpecialSoundChar("றோ", "ன்", ".", "droa"));
     }
 
     public static void convertFiles(File source) throws IOException
@@ -221,12 +225,6 @@ public class TamilScriptConverter
         SpecialSoundChar matchedSpecialSoundChar = specialSoundChars.stream()
                 .filter(specialSoundChar -> matchesSpecialSoundChar(specialSoundChar, charToBeConverted, previousChar, nextChar))
                 .findFirst().orElse(null);
-        if (matchedSpecialSoundChar == null) {
-            matchedSpecialSoundChar = specialSoundChars.stream()
-                    .filter(specialSoundChar -> matchesOnlyPreviousChar(specialSoundChar, charToBeConverted, previousChar)
-                            || matchesOnlyNextChar(specialSoundChar, charToBeConverted, nextChar))
-                    .findFirst().orElse(null);
-        }
         logger.debug("Matched special sound char: {}", matchedSpecialSoundChar);
         return matchedSpecialSoundChar != null ? matchedSpecialSoundChar.getValueChar() : null;
     }
@@ -236,27 +234,18 @@ public class TamilScriptConverter
     {
         String previousCharToBeMatched = specialSoundChar.getPreviousChar();
         String nextCharToBeMatched = specialSoundChar.getNextChar();
-        if (specialSoundChar.getKeyChar().equals(charToBeConverted)
-                && previousCharToBeMatched != null && nextCharToBeMatched != null) {
-            return matches(previousChar, previousCharToBeMatched) && matches(nextChar, nextCharToBeMatched);
+        if (specialSoundChar.getKeyChar().equals(charToBeConverted)) {
+            return matchesChar(previousChar, previousCharToBeMatched) && matchesChar(nextChar, nextCharToBeMatched);
         }
         return false;
     }
 
-    private static boolean matchesOnlyPreviousChar(SpecialSoundChar specialSoundChar,
-                                                   String charToBeConverted, String previousChar)
+    private static boolean matchesChar(String string, String charToBeMatched)
     {
-        if (specialSoundChar.getKeyChar().equals(charToBeConverted) && specialSoundChar.getPreviousChar() != null) {
-            return matches(previousChar, specialSoundChar.getPreviousChar());
-        }
-        return false;
-    }
-
-    private static boolean matchesOnlyNextChar(SpecialSoundChar specialSoundChar,
-                                               String charToBeConverted, String nextChar)
-    {
-        if (specialSoundChar.getKeyChar().equals(charToBeConverted) && specialSoundChar.getNextChar() != null) {
-            return matches(nextChar, specialSoundChar.getNextChar());
+        if (StringUtils.isBlank(string) && StringUtils.isBlank(charToBeMatched)) {
+            return true;
+        } else if (string != null && charToBeMatched != null) {
+            return matches(string, charToBeMatched);
         }
         return false;
     }
