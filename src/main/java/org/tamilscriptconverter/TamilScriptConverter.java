@@ -240,7 +240,7 @@ public class TamilScriptConverter
         return false;
     }
 
-    private static boolean matchesChar(String string, String charToBeMatched)
+    static boolean matchesChar(String string, String charToBeMatched)
     {
         if (StringUtils.isBlank(string) && StringUtils.isBlank(charToBeMatched)) {
             return true;

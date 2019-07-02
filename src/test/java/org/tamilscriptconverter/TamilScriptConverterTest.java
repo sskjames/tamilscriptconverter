@@ -220,6 +220,17 @@ public class TamilScriptConverterTest
     }
 
     @Test
+    public void testMatchesChar()
+    {
+        assertTrue(TamilScriptConverter.matchesChar("அ", "அ"));
+        assertTrue(TamilScriptConverter.matchesChar("அ", "."));
+        assertFalse(TamilScriptConverter.matchesChar("அ", "ஆ"));
+
+        assertTrue(TamilScriptConverter.matchesChar("", ""));
+        assertTrue(TamilScriptConverter.matchesChar(null, ""));
+    }
+
+    @Test
     public void testConvertFile() throws IOException
     {
         File source = new File("src/test/resources/Urugaayoa nenjamae nee.txt");
