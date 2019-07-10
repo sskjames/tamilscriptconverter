@@ -194,6 +194,7 @@ public class TamilScriptConverterTest
         assertEquals("manguthae", TamilScriptConverter.convert("மங்குதே"));
         assertEquals("androa", TamilScriptConverter.convert("அன்றோ"));
         assertEquals("aegaparan", TamilScriptConverter.convert("ஏகபரன்"));
+        assertEquals("tharkaathu", TamilScriptConverter.convert("தற்காத்து"));
     }
 
     @Test
