@@ -275,14 +275,14 @@ public class TamilScriptConverter
             logger.debug("First char part: {}, second char part: {}", firstCharPart, secondCharPart);
             switch (secondCharPart) {
                 case VOWEL_SIGN_AA:
-                    return convertChar(firstCharPart + "") + "a";
+                    return convertFirstPartInUyirMeiChar(firstCharPart + "") + "a";
                 case VOWEL_SIGN_I:
                     if (firstCharPart == 'ற') {
                         return "ri";
                     }
                     return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "i";
                 case VOWEL_SIGN_II:
-                    return convertChar(firstCharPart + "" + PULLI) + "ee";
+                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "ee";
                 case VOWEL_SIGN_U:
                     if (previousChars[0] != 'ச' && firstCharPart == 'ச') {
                         return "su";
@@ -291,21 +291,21 @@ public class TamilScriptConverter
                     }
                     return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "u";
                 case VOWEL_SIGN_UU:
-                    return convertChar(firstCharPart + "" + PULLI) + "oo";
+                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "oo";
                 case VOWEL_SIGN_E:
-                    return convertChar(firstCharPart + "" + PULLI) + "e";
+                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "e";
                 case VOWEL_SIGN_EE:
                     logger.debug("Character has vowel sign {}", VOWEL_SIGN_EE);
                     if (StringUtils.isBlank(previousChar) && firstCharPart == 'ச') {
                         return "sae";
                     }
-                    return convertChar(firstCharPart + "" + PULLI) + "ae";
+                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "ae";
                 case VOWEL_SIGN_AI:
                     return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "ai";
                 case VOWEL_SIGN_O:
-                    return convertChar(firstCharPart + "" + PULLI) + "o";
+                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "o";
                 case VOWEL_SIGN_OO:
-                    return convertChar(firstCharPart + "" + PULLI) + "oa";
+                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "oa";
             }
         }
         return unicodeChar;
