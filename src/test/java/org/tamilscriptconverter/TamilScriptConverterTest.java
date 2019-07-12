@@ -58,6 +58,13 @@ public class TamilScriptConverterTest
     }
 
     @Test
+    public void testConvertFirstPartInUyirMeiChar()
+    {
+        assertEquals("d", TamilScriptConverter.convertFirstPartInUyirMeiChar("ட்"));
+        assertEquals("p", TamilScriptConverter.convertFirstPartInUyirMeiChar("ப்"));
+    }
+
+    @Test
     public void testConvertCharWithVowelSign()
     {
         //vowel sign aa
@@ -119,7 +126,7 @@ public class TamilScriptConverterTest
     {
         assertEquals("aappam", TamilScriptConverter.convert("ஆப்பம்"));
         assertEquals("aamaam", TamilScriptConverter.convert("ஆமாம்"));
-        assertEquals("aandavar pataiththa vetrriyin naalithu", TamilScriptConverter.convert("ஆண்டவர் படைத்த வெற்றியின் நாளிது"));
+        assertEquals("aandavar padaiththa vetrriyin naalithu", TamilScriptConverter.convert("ஆண்டவர் படைத்த வெற்றியின் நாளிது"));
     }
 
     @Test
@@ -191,10 +198,27 @@ public class TamilScriptConverterTest
         assertEquals("nenjam", TamilScriptConverter.convert("நெஞ்சம்"));
         assertEquals("inji", TamilScriptConverter.convert("இஞ்சி"));
         assertEquals("panju", TamilScriptConverter.convert("பஞ்சு"));
-        assertEquals("manguthae", TamilScriptConverter.convert("மங்குதே"));
         assertEquals("androa", TamilScriptConverter.convert("அன்றோ"));
+    }
+
+    @Test
+    public void testConvertSpecialSoundWord_க()
+    {
+        assertEquals("manguthae", TamilScriptConverter.convert("மங்குதே"));
         assertEquals("aegaparan", TamilScriptConverter.convert("ஏகபரன்"));
         assertEquals("tharkaathu", TamilScriptConverter.convert("தற்காத்து"));
+    }
+
+    @Test
+    public void testConvertSpecialSoundWord_ட()
+    {
+        assertEquals("naavarandu", TamilScriptConverter.convert("நாவறண்டு"));
+        assertEquals("thaangkidavoa", TamilScriptConverter.convert("தாங்கிடவோ"));
+        assertEquals("piriththidumoa", TamilScriptConverter.convert("பிரித்திடுமோ"));
+        assertEquals("adiyavan", TamilScriptConverter.convert("அடியவன்"));
+        assertEquals("kadaisivarai", TamilScriptConverter.convert("கடைசிவரை"));
+        assertEquals("seedan", TamilScriptConverter.convert("சீடன்"));
+        assertEquals("thunivudan", TamilScriptConverter.convert("துணிவுடன்"));
     }
 
     @Test
@@ -286,7 +310,7 @@ public class TamilScriptConverterTest
                 "\r\n" +
                 "\r\n" +
                 "3. தாக மிஞ்சி நாவறண்டு\r\n" +
-                "3. thaaga minji naavarantu\r\n" +
+                "3. thaaga minji naavarandu\r\n" +
                 "தங்க மேனி மங்குதே ,\r\n" +
                 "thangga maeni manguthae ,\r\n" +
                 "ஏகபரன் கண்ணயர்ந்து \r\n" +
@@ -298,7 +322,7 @@ public class TamilScriptConverterTest
                 "4. மூவுலகைத் தாங்கும் தேவன்\r\n" +
                 "4. moovulakaith thaangum thaevan\r\n" +
                 "மூன்றாணி தாங்கிடவோ?\r\n" +
-                "moonraani thaangkitavoa?\r\n" +
+                "moonraani thaangkidavoa?\r\n" +
                 "சாவு வேளை வந்த போது\r\n" +
                 "saavu vaelai vantha poathu\r\n" +
                 "சிலுவையில் தொங்கினார்.\r\n" +
