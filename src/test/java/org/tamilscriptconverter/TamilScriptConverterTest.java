@@ -53,18 +53,8 @@ public class TamilScriptConverterTest
         assertEquals("ai", TamilScriptConverter.convertChar("ஐ"));
         assertEquals("o", TamilScriptConverter.convertChar("ஒ"));
         assertEquals("oa", TamilScriptConverter.convertChar("ஓ"));
-    }
-
-    @Test
-    public void testConvertChar_Mei()
-    {
+        //mei
         assertEquals("s", TamilScriptConverter.convertChar("ச்"));
-    }
-
-    @Test
-    public void testConvertChar_UyirMei()
-    {
-        assertEquals("ja", TamilScriptConverter.convertChar("ஜ"));
     }
 
     @Test
@@ -190,13 +180,6 @@ public class TamilScriptConverterTest
         assertEquals("seendal", TamilScriptConverter.convert("சீண்டல்"));
         assertEquals("sundal", TamilScriptConverter.convert("சுண்டல்"));
         assertEquals("saetrrilirunthu thookkinaar", TamilScriptConverter.convert("சேற்றிலிருந்து தூக்கினார்"));
-    }
-
-    @Test
-    public void testConvertWordsStartingWith_ஜ()
-    {
-        assertEquals("pajji", TamilScriptConverter.convert("பஜ்ஜி"));
-        assertEquals("jananggal", TamilScriptConverter.convert("ஜனங்கள்"));
     }
 
     @Test
