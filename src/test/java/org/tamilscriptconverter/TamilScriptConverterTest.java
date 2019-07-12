@@ -58,7 +58,7 @@ public class TamilScriptConverterTest
     }
 
     @Test
-    public void testConverFirstPartInUyirMeiChar()
+    public void testConvertFirstPartInUyirMeiChar()
     {
         assertEquals("d", TamilScriptConverter.convertFirstPartInUyirMeiChar("ட்"));
         assertEquals("p", TamilScriptConverter.convertFirstPartInUyirMeiChar("ப்"));
