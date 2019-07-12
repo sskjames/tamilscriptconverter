@@ -75,6 +75,7 @@ public class TamilScriptConverter
         charMap.put("க", "ga");
         charMap.put("ங", "nga");
         charMap.put("ச", "sa");
+        charMap.put("ஜ", "ja");
         charMap.put("ஞ", "nya");
         charMap.put("ட", "da");
         charMap.put("ண", "na");
