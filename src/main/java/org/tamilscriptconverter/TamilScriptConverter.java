@@ -54,6 +54,7 @@ public class TamilScriptConverter
         charMap.put("ஜ்", "j");
         charMap.put("ஞ்", "nj");
         charMap.put("ட்", "t");
+        charMap.put("ட்'", "d");
         charMap.put("ண்", "n");
         charMap.put("த்", "th");
         charMap.put("ந்", "n");
@@ -75,7 +76,7 @@ public class TamilScriptConverter
         charMap.put("ங", "nga");
         charMap.put("ச", "sa");
         charMap.put("ஞ", "nya");
-        charMap.put("ட", "ta");
+        charMap.put("ட", "da");
         charMap.put("ண", "na");
         charMap.put("த", "tha");
         charMap.put("ந", "na");
@@ -111,7 +112,10 @@ public class TamilScriptConverter
         specialSoundChars.add(new SpecialSoundChar("ற்", ".", "றி|று", "tr"));
         specialSoundChars.add(new SpecialSoundChar("சு", "ச்", ".", "chu"));
 
-        specialSoundChars.add(new SpecialSoundChar("ட", "ண்", ".", "da"));
+        specialSoundChars.add(new SpecialSoundChar("டா", "ட்", ".", "taa"));
+        specialSoundChars.add(new SpecialSoundChar("டி", "ட்", ".", "ti"));
+        specialSoundChars.add(new SpecialSoundChar("டு", "ட்", ".", "tu"));
+
         specialSoundChars.add(new SpecialSoundChar("பு", "ண்|ன்", ".", "bu"));
 
         specialSoundChars.add(new SpecialSoundChar("றோ", "ன்", ".", "droa"));
@@ -216,6 +220,13 @@ public class TamilScriptConverter
         return trimUnicodeChars(unicodeChars);
     }
 
+    static String convertFirstPartInUyirMeiChar(String charToBeConverted)
+    {
+        logger.debug("Converting the tamil char1: {}", charToBeConverted);
+        String convertedString = charMap.get(charToBeConverted + "'");
+        return convertedString != null ? convertedString : convertChar(charToBeConverted);
+    }
+
     static String convertChar(String charToBeConverted)
     {
         logger.debug("Converting the tamil char: {}", charToBeConverted);
@@ -269,7 +280,7 @@ public class TamilScriptConverter
                     if (firstCharPart == 'ற') {
                         return "ri";
                     }
-                    return convertChar(firstCharPart + "" + PULLI) + "i";
+                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "i";
                 case VOWEL_SIGN_II:
                     return convertChar(firstCharPart + "" + PULLI) + "ee";
                 case VOWEL_SIGN_U:
@@ -278,7 +289,7 @@ public class TamilScriptConverter
                     } else if (firstCharPart == 'ற') {
                         return "ru";
                     }
-                    return convertChar(firstCharPart + "" + PULLI) + "u";
+                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "u";
                 case VOWEL_SIGN_UU:
                     return convertChar(firstCharPart + "" + PULLI) + "oo";
                 case VOWEL_SIGN_E:
@@ -290,7 +301,7 @@ public class TamilScriptConverter
                     }
                     return convertChar(firstCharPart + "" + PULLI) + "ae";
                 case VOWEL_SIGN_AI:
-                    return convertChar(firstCharPart + "" + PULLI) + "ai";
+                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "ai";
                 case VOWEL_SIGN_O:
                     return convertChar(firstCharPart + "" + PULLI) + "o";
                 case VOWEL_SIGN_OO:
