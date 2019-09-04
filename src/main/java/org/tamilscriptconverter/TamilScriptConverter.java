@@ -98,8 +98,8 @@ public class TamilScriptConverter
         specialSoundChars.add(new SpecialSoundChar("கா", null, ".", "kaa"));
         specialSoundChars.add(new SpecialSoundChar("கா", ".", "த்", "kaa"));
 
-        specialSoundChars.add(new SpecialSoundChar("க", "க்", ".", "ka"));
-        specialSoundChars.add(new SpecialSoundChar("கா", "க்", ".", "kaa"));
+        specialSoundChars.add(new SpecialSoundChar("க", "க்|ட்", ".", "ka"));
+        specialSoundChars.add(new SpecialSoundChar("கா", "க்|ட்", ".", "kaa"));
 
         specialSoundChars.add(new SpecialSoundChar("கு", "ங்", ".", "u"));
 
@@ -116,6 +116,7 @@ public class TamilScriptConverter
         specialSoundChars.add(new SpecialSoundChar("டா", "ட்", ".", "taa"));
         specialSoundChars.add(new SpecialSoundChar("டி", "ட்", ".", "ti"));
         specialSoundChars.add(new SpecialSoundChar("டு", "ட்", ".", "tu"));
+        specialSoundChars.add(new SpecialSoundChar("டோ", ".", "ர்", "toa"));
 
         specialSoundChars.add(new SpecialSoundChar("பு", "ண்|ன்", ".", "bu"));
 
