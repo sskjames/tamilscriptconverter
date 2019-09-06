@@ -114,9 +114,7 @@ public class TamilScriptConverter
         specialSoundChars.add(new SpecialSoundChar("சு", "ச்", ".", "chu"));
 
         specialSoundChars.add(new SpecialSoundChar("டா", "ட்", ".", "taa"));
-        specialSoundChars.add(new SpecialSoundChar("டி", "ட்", ".", "ti"));
-        specialSoundChars.add(new SpecialSoundChar("டு", "ட்", ".", "tu"));
-        specialSoundChars.add(new SpecialSoundChar("டோ", ".", "ர்", "toa"));
+        specialSoundChars.add(new SpecialSoundChar("ட்", "ட்", ".", "t"));
 
         specialSoundChars.add(new SpecialSoundChar("பு", "ண்|ன்", ".", "bu"));
 
@@ -282,7 +280,7 @@ public class TamilScriptConverter
                     if (firstCharPart == 'ற') {
                         return "ri";
                     }
-                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "i";
+                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI, previousChar) + "i";
                 case VOWEL_SIGN_II:
                     return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "ee";
                 case VOWEL_SIGN_U:
@@ -291,7 +289,7 @@ public class TamilScriptConverter
                     } else if (firstCharPart == 'ற') {
                         return "ru";
                     }
-                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "u";
+                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI, previousChar) + "u";
                 case VOWEL_SIGN_UU:
                     return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "oo";
                 case VOWEL_SIGN_E:
@@ -301,16 +299,22 @@ public class TamilScriptConverter
                     if (StringUtils.isBlank(previousChar) && firstCharPart == 'ச') {
                         return "sae";
                     }
-                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "ae";
+                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI, previousChar) + "ae";
                 case VOWEL_SIGN_AI:
-                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "ai";
+                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI, previousChar) + "ai";
                 case VOWEL_SIGN_O:
                     return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "o";
                 case VOWEL_SIGN_OO:
-                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI) + "oa";
+                    return convertFirstPartInUyirMeiChar(firstCharPart + "" + PULLI, previousChar) + "oa";
             }
         }
         return unicodeChar;
+    }
+
+    private static String convertFirstPartInUyirMeiChar(String charToBeConverted, String previousChar)
+    {
+        String specialSoundChar = convertSpecialSoundChar(charToBeConverted, previousChar, ".");
+        return specialSoundChar != null ? specialSoundChar : convertFirstPartInUyirMeiChar(charToBeConverted);
     }
 
     static boolean isSignAfterChar(char tamilChar)
