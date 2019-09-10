@@ -244,7 +244,10 @@ public class TamilScriptConverterTest
         assertEquals("kadaisivarai", TamilScriptConverter.convert("கடைசிவரை"));
         assertEquals("seedan", TamilScriptConverter.convert("சீடன்"));
         assertEquals("thunivudan", TamilScriptConverter.convert("துணிவுடன்"));
+
         assertEquals("meetkappattoar", TamilScriptConverter.convert("மீட்கப்பட்டோர்"));
+        assertEquals("koattaigal", TamilScriptConverter.convert("கோட்டைகள்"));
+        assertEquals("vaazhnthuvittaen", TamilScriptConverter.convert("வாழ்ந்துவிட்டேன்"));
     }
 
     @Test
@@ -271,8 +274,6 @@ public class TamilScriptConverterTest
         assertEquals("t", TamilScriptConverter.convertSpecialSoundChar("ட்", "ட்", "."));
 
         assertEquals("droa", TamilScriptConverter.convertSpecialSoundChar("றோ", "ன்", "."));
-
-        assertEquals("toa", TamilScriptConverter.convertSpecialSoundChar("டோ", ".", "ர்"));
     }
 
     @Test
