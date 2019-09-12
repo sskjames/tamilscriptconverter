@@ -205,16 +205,15 @@ public class TamilScriptConverter
         logger.debug("Input string: {}", input);
         List<String> unicodeChars = new ArrayList<String>();
         char[] chars = input.toCharArray();
+        logger.info("Chars: {}", chars);
         for (int i = 0; i < chars.length; i++) {
-            int nextCharIndex = i + 1;
-            if (nextCharIndex < chars.length) {
-                logger.debug("Preparing to add the char: {}", chars[i]);
-                if (isSignAfterChar(chars[nextCharIndex])) {
-                    unicodeChars.add(chars[i] + "" + chars[nextCharIndex]);
-                } else if (!isSignAfterChar(chars[i])) {
-                    unicodeChars.add(chars[i] + "");
-                }
-            } else if (!isSignAfterChar(chars[i])) {
+            logger.debug("Preparing to add the char: {}", chars[i]);
+            if (isSignAfterChar(chars[i])) {
+                int lastAddedCharIndex = unicodeChars.size() - 1;
+                String lastAddedChar = unicodeChars.get(lastAddedCharIndex);
+                unicodeChars.remove(lastAddedCharIndex);
+                unicodeChars.add(lastAddedChar + "" + chars[i]);
+            } else {
                 unicodeChars.add(chars[i] + "");
             }
         }
@@ -224,7 +223,7 @@ public class TamilScriptConverter
 
     static String convertFirstPartInUyirMeiChar(String charToBeConverted)
     {
-        logger.debug("Converting the tamil char1: {}", charToBeConverted);
+        logger.debug("Converting the tamil char: {}", charToBeConverted);
         String convertedString = charMap.get(charToBeConverted + "'");
         return convertedString != null ? convertedString : convertChar(charToBeConverted);
     }

@@ -112,6 +112,7 @@ public class TamilScriptConverterTest
         assertEquals(Arrays.asList("போ", "ட்", "டி"), TamilScriptConverter.splitUnicodeChars("போட்டி"));
         assertEquals(Arrays.asList("பௌ", "ர்", "ண", "மி"), TamilScriptConverter.splitUnicodeChars("பௌர்ணமி"));
         assertEquals(Arrays.asList("அ", "க", "ர", " ", "மு", "த", "ல"), TamilScriptConverter.splitUnicodeChars("அகர முதல"));
+        assertEquals(Arrays.asList("தொ", "னி", "யோ"), TamilScriptConverter.splitUnicodeChars("தொனியோ"));
     }
 
     @Test
@@ -208,6 +209,12 @@ public class TamilScriptConverterTest
     {
         assertEquals("pajji", TamilScriptConverter.convert("பஜ்ஜி"));
         assertEquals("jananggal", TamilScriptConverter.convert("ஜனங்கள்"));
+    }
+
+    @Test
+    public void testConvertWordsWith_ஓ()
+    {
+        //assertEquals("thoniyoa", TamilScriptConverter.convert("தொனியோ"));
     }
 
     @Test
