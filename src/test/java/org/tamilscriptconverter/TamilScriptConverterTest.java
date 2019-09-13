@@ -214,7 +214,12 @@ public class TamilScriptConverterTest
     @Test
     public void testConvertWordsWith_ஓ()
     {
-        //assertEquals("thoniyoa", TamilScriptConverter.convert("தொனியோ"));
+        assertEquals("thoniyoa", TamilScriptConverter.convert("தொனியோ"));
+        assertEquals("kaetpaaroa", TamilScriptConverter.convert("கேட்பாரோ"));
+        assertEquals("vittoadum", TamilScriptConverter.convert("விட்டோடும்"));
+        assertEquals("seythaenalloa", TamilScriptConverter.convert("செய்தேனல்லோ"));
+        assertEquals("poajanam", TamilScriptConverter.convert("போஜனம்"));
+        assertEquals("solluvoam", TamilScriptConverter.convert("சொல்லுவோம்"));
     }
 
     @Test
@@ -324,6 +329,16 @@ public class TamilScriptConverterTest
 
         assertFalse(TamilScriptConverter.matches(text, "ஆ"));
         assertFalse(TamilScriptConverter.matches(text, "ம்"));
+    }
+
+    @Test
+    public void testGetSecondChar()
+    {
+        assertEquals('ொ', TamilScriptConverter.getSecondChar("தொ".toCharArray()));
+        assertEquals('ோ', TamilScriptConverter.getSecondChar("யோ".toCharArray()));
+
+        assertEquals('ொ', TamilScriptConverter.getSecondChar("தொ".toCharArray()));
+        assertEquals('ே', TamilScriptConverter.getSecondChar("கே".toCharArray()));
     }
 
     private String getExpected()
