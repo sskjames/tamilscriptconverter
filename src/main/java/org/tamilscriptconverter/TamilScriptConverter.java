@@ -317,7 +317,7 @@ public class TamilScriptConverter
     static char getSecondChar(char[] chars)
     {
         char[] secondChars = Arrays.copyOfRange(chars, 1, chars.length);
-        logger.info("Second chars: {}", secondChars);
+        logger.trace("Second chars: {}", secondChars);
         if (secondChars.length > 1) {
             if (Arrays.equals(secondChars, TWO_PART_VOWEL_SIGN_O)) {
                 return VOWEL_SIGN_O;
