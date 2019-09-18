@@ -30,6 +30,8 @@ public class TamilScriptConverter
     public static final List<Character> VOWEL_SIGNS = Arrays.asList(VOWEL_SIGN_AA, VOWEL_SIGN_I, VOWEL_SIGN_II,
             VOWEL_SIGN_U, VOWEL_SIGN_UU, VOWEL_SIGN_E, VOWEL_SIGN_EE, VOWEL_SIGN_AI, VOWEL_SIGN_O, VOWEL_SIGN_OO,
             VOWEL_SIGN_AU);
+    public static final char[] TWO_PART_VOWEL_SIGN_O = new char[]{VOWEL_SIGN_E, VOWEL_SIGN_AA};
+    public static final char[] TWO_PART_VOWEL_SIGN_OO = new char[]{VOWEL_SIGN_EE, VOWEL_SIGN_AA};
     private static Logger logger = LoggerFactory.getLogger(TamilScriptConverter.class);
     private static Map<String, String> charMap = new HashMap<String, String>();
     private static Set<SpecialSoundChar> specialSoundChars = new HashSet<>();
@@ -205,16 +207,15 @@ public class TamilScriptConverter
         logger.debug("Input string: {}", input);
         List<String> unicodeChars = new ArrayList<String>();
         char[] chars = input.toCharArray();
+        logger.info("Chars: {}", chars);
         for (int i = 0; i < chars.length; i++) {
-            int nextCharIndex = i + 1;
-            if (nextCharIndex < chars.length) {
-                logger.debug("Preparing to add the char: {}", chars[i]);
-                if (isSignAfterChar(chars[nextCharIndex])) {
-                    unicodeChars.add(chars[i] + "" + chars[nextCharIndex]);
-                } else if (!isSignAfterChar(chars[i])) {
-                    unicodeChars.add(chars[i] + "");
-                }
-            } else if (!isSignAfterChar(chars[i])) {
+            logger.debug("Preparing to add the char: {}", chars[i]);
+            if (isSignAfterChar(chars[i])) {
+                int lastAddedCharIndex = unicodeChars.size() - 1;
+                String lastAddedChar = unicodeChars.get(lastAddedCharIndex);
+                unicodeChars.remove(lastAddedCharIndex);
+                unicodeChars.add(lastAddedChar + "" + chars[i]);
+            } else {
                 unicodeChars.add(chars[i] + "");
             }
         }
@@ -224,7 +225,7 @@ public class TamilScriptConverter
 
     static String convertFirstPartInUyirMeiChar(String charToBeConverted)
     {
-        logger.debug("Converting the tamil char1: {}", charToBeConverted);
+        logger.debug("Converting the tamil char: {}", charToBeConverted);
         String convertedString = charMap.get(charToBeConverted + "'");
         return convertedString != null ? convertedString : convertChar(charToBeConverted);
     }
@@ -273,7 +274,7 @@ public class TamilScriptConverter
             char[] chars = unicodeChar.toCharArray();
             char[] previousChars = previousChar.toCharArray();
             char firstCharPart = chars[0];
-            char secondCharPart = chars[1];
+            char secondCharPart = getSecondChar(chars);
             logger.debug("First char part: {}, second char part: {}", firstCharPart, secondCharPart);
             switch (secondCharPart) {
                 case VOWEL_SIGN_AA:
@@ -311,6 +312,21 @@ public class TamilScriptConverter
             }
         }
         return unicodeChar;
+    }
+
+    static char getSecondChar(char[] chars)
+    {
+        char[] secondChars = Arrays.copyOfRange(chars, 1, chars.length);
+        logger.trace("Second chars: {}", secondChars);
+        if (secondChars.length > 1) {
+            if (Arrays.equals(secondChars, TWO_PART_VOWEL_SIGN_O)) {
+                return VOWEL_SIGN_O;
+            }
+            if (Arrays.equals(secondChars, TWO_PART_VOWEL_SIGN_OO)) {
+                return VOWEL_SIGN_OO;
+            }
+        }
+        return secondChars[0];
     }
 
     private static String convertFirstPartInUyirMeiChar(String charToBeConverted, String previousChar)
